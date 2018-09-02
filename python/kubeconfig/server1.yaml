@@ -14,7 +14,7 @@ spec:
   spec:
    containers:
    - name: server1
-     image: sugun/server1:v1
+     image: sugun/app1:v1
      ports:
      - containerPort: 8090
 

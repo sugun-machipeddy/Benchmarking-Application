@@ -3,36 +3,36 @@
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
+import logging
 
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)-8s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='/temp/myapp.log',
+                    filemode='w')
 
-#Create custom HTTPRequestHandler class
 class KodeFunHTTPRequestHandler(BaseHTTPRequestHandler):
 
-    #handle GET command
     def do_GET(self):
         if self.path == '/API1':
-            print('starting API1')
+            logging.info('starting API1')
             os.system('python ./server/CPULoadGenerator.py -l 0.2 -d 60 -c 0')
-            print('stoping API1')
+            logging.info('stoping API1')
         if self.path == '/API2':
-            print('starting API2')
+            logging.info('starting API2')
             os.system('python ./server/CPULoadGenerator.py -l 0.4 -d 60 -c 0')
-            print('stoping API2')
+            logging.info('stoping API2')
         if self.path == '/API3':
-            print('starting API3')
+            logging.info('starting API3')
             os.system('python ./server/CPULoadGenerator.py -l 0.85 -d 60 -c 0')
-            print('stoping API3')
-
-
-
-
+            logging.info('stoping API3')
 
 def run():
-    print('http server is starting...')
+    logging.info('http server is starting...')
 
     server_address = ('', 8090)
     httpd = HTTPServer(server_address, KodeFunHTTPRequestHandler)
-    print('http server is running...')
+    logging.info('http server is running...')
     httpd.serve_forever()
 
 if __name__ == '__main__':

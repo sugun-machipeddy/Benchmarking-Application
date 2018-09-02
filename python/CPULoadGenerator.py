@@ -7,7 +7,7 @@ import multiprocessing
 from twisted.python import usage
 
 import sys
-sys.path.insert(0, 'utils')
+sys.path.insert(0, '/server/utils')
 
 from Monitor import MonitorThread
 from Controller import ControllerThread
